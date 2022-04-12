@@ -1,0 +1,20 @@
+#login{
+    position: relative;
+    width: 30%;
+    left: 35%;
+    top: 100px;
+}
+.proyectos{
+    left: 8%;
+}
+.btn-nuevo{
+    position: absolute;
+    float: right;
+}
+#proyectoN{
+    width: 50%!important;
+    margin-bottom: 5%;
+    position: relative;
+    left: 25%;
+    top: 50px;
+}
