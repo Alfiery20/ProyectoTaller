@@ -55,11 +55,11 @@ public class ProyectoServlet extends HttpServlet {
                     break;
                 case "3":
                     Proyecto prueba = proyectoServiceImpl.view(request.getParameter("id"));
-                    request.setAttribute("prote", prueba);
+                    request.getSession().setAttribute("prote", prueba);
                     List<Cliente> list = clienteServiceImpl.list();
                     List<Modulo> listModu = moduloServiceImpl.list(prueba.getId());
                     request.getSession().setAttribute("lisusu", list);
-                    request.setAttribute("listmodu", listModu);
+                    request.getSession().setAttribute("listmodu", listModu);
                     request.getRequestDispatcher("/Trabajador/ModificarProyecto.jsp").forward(request, response);
                     break;
                 case "4":

@@ -16,4 +16,17 @@ public class ModuloServiceImpl {
     public Modulo view(Integer id) {
         return moduloDAO.view(id);
     }
+
+    public boolean Nuevo(Modulo modulo) {
+        return moduloDAO.nuevoModulo(modulo);
+    }
+
+    public boolean Editar(Modulo modulo) {
+        return moduloDAO.editarModulo(modulo);
+    }
+
+    public boolean Eliminar(Integer cod) {
+        System.out.println("DENTRO DEL SERVICE");
+        return moduloDAO.eliminarModulo(cod);
+    }
 }

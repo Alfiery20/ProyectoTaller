@@ -13,12 +13,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="style.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <title>Nuevo Modulo</title>
+        <title>Modificar Modulo</title>
     </head>
     <body class="position-relative">
         <%@include file="../Partes/Menu.jspf" %>
         <div id="proyectoN" class="col-md-8 order-md-1 w-50">
-            <h1 class="mb-3 text-center">Registro de Modulo</h1>
+            <h1 class="mb-3 text-center">Modificar de Modulo</h1>
             <hr class="mb-4">
             <form class="needs-validation" novalidate="" method="post" action="ModuloServlet?Dato=2">
                 <div class="mb-3">

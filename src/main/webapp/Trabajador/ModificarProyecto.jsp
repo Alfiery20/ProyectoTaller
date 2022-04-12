@@ -16,13 +16,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="style.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <title>Nuevo Proyecto</title>
+        <title>Modificar Proyecto</title>
     </head>
     <body class="position-relative">
         <%
-            Proyecto prote = (Proyecto) request.getAttribute("prote");
+            Proyecto prote = (Proyecto) request.getSession().getAttribute("prote");
             List<Cliente> list = (List<Cliente>) request.getSession().getAttribute("lisusu");
-            List<Modulo> listModu = (List<Modulo>) request.getAttribute("listmodu");
+            List<Modulo> listModu = (List<Modulo>) request.getSession().getAttribute("listmodu");
         %>
         <%@include file="../Partes/Menu.jspf" %>
         <div id="proyectoN" class="col-md-8 order-md-1 w-50">
@@ -129,8 +129,8 @@
                                     <td><%=modulo.getDuracion()%></td>
                                     <td><%=modulo.getTipo()%></td>
                                     <td>
-                                        <a href="<%=modulo.getId()%>" class="btn btn-lg btn-primary">Editar</a>
-                                        <a href="<%=modulo.getId()%>" class="btn btn-lg btn-danger">Eliminar</a>
+                                        <a href="ModuloServlet?Dato=3&id=<%=modulo.getId()%>" class="btn btn-lg btn-primary">Editar</a>
+                                        <a href="ModuloServlet?Dato=5&id=<%=modulo.getId()%>" class="btn btn-lg btn-danger">Eliminar</a>
                                     </td>
                                 </tr>
                                 <%
@@ -143,14 +143,17 @@
                 </div>    
                 <hr class="mb-4">
                 <div class="d-flex">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <button class="btn btn-primary btn-lg btn-block" type="submit">Modificar</button>
                     </div>
                     <div class="col-md-4">
-                        <a href="ProyectoServlet?Dato=5&id=<%=prote.getId()%>" class="btn btn-danger btn-lg btn-block">Eliminar</a>
+                        <a href="ModuloServlet?Dato=1&id=<%=prote.getId()%>" class="btn btn-primary btn-lg btn-block">Añadir Modulo</a>
                     </div>
-                    <div class="col-md-4">
-                        <a href="ProyectoServlet?Dato=5&id=<%=prote.getId()%>" class="btn btn-primary btn-lg btn-block">Añadir Modulo</a>
+                    <div class="col-md-3">
+                        <a href="ModuloServlet?Dato=1&id=<%=prote.getId()%>" class="btn btn-danger btn-lg btn-block">Eliminar</a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="ProyectoServlet?Dato=2" class="btn btn-primary btn-lg btn-block">Regresar</a>
                     </div>
                 </div>
             </form>

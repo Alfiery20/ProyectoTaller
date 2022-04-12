@@ -10,5 +10,5 @@ public class Modulo {
     private String nombre;
     private String duracion;
     private String tipo;
-    private Integer proyectoID;
+    private String proyectoID;
 }
