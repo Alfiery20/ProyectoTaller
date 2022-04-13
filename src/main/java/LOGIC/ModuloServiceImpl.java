@@ -22,6 +22,7 @@ public class ModuloServiceImpl {
     }
 
     public boolean Editar(Modulo modulo) {
+        System.out.println("ENTRE EL SERVICE");
         return moduloDAO.editarModulo(modulo);
     }
 

@@ -44,18 +44,22 @@ public class ModuloServlet extends HttpServlet {
                     request.getRequestDispatcher("/Trabajador/NuevoModulo.jsp").forward(request, response);
                     break;
                 case "2":
-                    System.out.println("RECIEN ENTRA AL SERVLET");
                     NuevoModulo(request, response);
                     break;
                 case "3":
                     request.getRequestDispatcher("/Trabajador/ModificarModulo.jsp").forward(request, response);
                     break;
                 case "4":
-                    EditarModulo(request, response);
+                    Modulo modulo = moduloServiceImpl.view(Integer.parseInt(request.getParameter("id")));
+                    request.getSession().setAttribute("modte", modulo);
+                    System.out.println("ENTRO A EDITAR MODULO");
+                    request.getRequestDispatcher("/Trabajador/ModificarModulo.jsp").forward(request, response);
                     break;
                 case "5":
-                    System.out.println("ENTRO A SERVLET");
                     ElminarModulo(request, response);
+                    break;
+                case "6":
+                    EditarModulo(request, response);
                     break;
             }
         }
@@ -84,6 +88,7 @@ public class ModuloServlet extends HttpServlet {
 
     private void EditarModulo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("ENTRE A EDITAR MODULO");
         Integer cod = Integer.parseInt(request.getParameter("cod"));
         String nom = request.getParameter("nom");
         String dur = request.getParameter("dur");
@@ -98,6 +103,7 @@ public class ModuloServlet extends HttpServlet {
                 .proyectoID(idp)
                 .build();
         moduloServiceImpl.Editar(modulo);
+        System.out.println("SALI DE EDITAR DAO");
         List<Modulo> listModu = moduloServiceImpl.list(idp);
         request.getSession().setAttribute("listmodu", listModu);
         request.getRequestDispatcher("/Trabajador/ModificarProyecto.jsp").forward(request, response);
@@ -105,11 +111,8 @@ public class ModuloServlet extends HttpServlet {
 
     private void ElminarModulo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("SERVLET ELIMINAR");
         Integer cod = Integer.parseInt(request.getParameter("id"));
-        System.out.println("CODIGO: " + cod);
         moduloServiceImpl.Eliminar(cod);
-        System.out.println("DESPUES DEL SERVICE");
         String idp = (String) request.getSession().getAttribute("proyectoTempo");
         List<Modulo> listModu = moduloServiceImpl.list(idp);
         request.getSession().setAttribute("listmodu", listModu);

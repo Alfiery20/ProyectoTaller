@@ -129,7 +129,7 @@
                                     <td><%=modulo.getDuracion()%></td>
                                     <td><%=modulo.getTipo()%></td>
                                     <td>
-                                        <a href="ModuloServlet?Dato=3&id=<%=modulo.getId()%>" class="btn btn-lg btn-primary">Editar</a>
+                                        <a href="ModuloServlet?Dato=4&id=<%=modulo.getId()%>" class="btn btn-lg btn-primary">Editar</a>
                                         <a href="ModuloServlet?Dato=5&id=<%=modulo.getId()%>" class="btn btn-lg btn-danger">Eliminar</a>
                                     </td>
                                 </tr>
