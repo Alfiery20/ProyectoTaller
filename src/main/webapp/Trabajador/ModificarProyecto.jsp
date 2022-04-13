@@ -150,7 +150,7 @@
                         <a href="ModuloServlet?Dato=1&id=<%=prote.getId()%>" class="btn btn-primary btn-lg btn-block">Añadir Modulo</a>
                     </div>
                     <div class="col-md-3">
-                        <a href="ModuloServlet?Dato=1&id=<%=prote.getId()%>" class="btn btn-danger btn-lg btn-block">Eliminar</a>
+                        <a href="ProyectoServlet?Dato=5&id=<%=prote.getId()%>" class="btn btn-danger btn-lg btn-block">Eliminar</a>
                     </div>
                     <div class="col-md-3">
                         <a href="ProyectoServlet?Dato=2" class="btn btn-primary btn-lg btn-block">Regresar</a>

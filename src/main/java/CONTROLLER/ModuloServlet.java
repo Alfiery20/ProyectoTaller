@@ -6,7 +6,9 @@
 package CONTROLLER;
 
 import BEANS.Modulo;
+import BEANS.Requerimiento;
 import LOGIC.ModuloServiceImpl;
+import LOGIC.RequerimientoServiceImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ModuloServlet extends HttpServlet {
 
     private ModuloServiceImpl moduloServiceImpl = new ModuloServiceImpl();
+    private RequerimientoServiceImpl requerimientoServiceImpl = new RequerimientoServiceImpl();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,8 +54,9 @@ public class ModuloServlet extends HttpServlet {
                     break;
                 case "4":
                     Modulo modulo = moduloServiceImpl.view(Integer.parseInt(request.getParameter("id")));
+                    List<Requerimiento> listReq = requerimientoServiceImpl.list(modulo.getId());
                     request.getSession().setAttribute("modte", modulo);
-                    System.out.println("ENTRO A EDITAR MODULO");
+                    request.getSession().setAttribute("listReq", listReq);
                     request.getRequestDispatcher("/Trabajador/ModificarModulo.jsp").forward(request, response);
                     break;
                 case "5":
@@ -88,13 +92,11 @@ public class ModuloServlet extends HttpServlet {
 
     private void EditarModulo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("ENTRE A EDITAR MODULO");
         Integer cod = Integer.parseInt(request.getParameter("cod"));
         String nom = request.getParameter("nom");
         String dur = request.getParameter("dur");
         String tip = request.getParameter("tip");
-        String idp = (String) request.getSession().getAttribute("proyectoTempo");
-
+        String idp = ((Modulo) request.getSession().getAttribute("modte")).getProyectoID();
         Modulo modulo = Modulo.builder()
                 .id(cod)
                 .nombre(nom)
@@ -103,7 +105,6 @@ public class ModuloServlet extends HttpServlet {
                 .proyectoID(idp)
                 .build();
         moduloServiceImpl.Editar(modulo);
-        System.out.println("SALI DE EDITAR DAO");
         List<Modulo> listModu = moduloServiceImpl.list(idp);
         request.getSession().setAttribute("listmodu", listModu);
         request.getRequestDispatcher("/Trabajador/ModificarProyecto.jsp").forward(request, response);

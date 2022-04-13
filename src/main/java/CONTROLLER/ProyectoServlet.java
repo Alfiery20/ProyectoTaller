@@ -67,7 +67,6 @@ public class ProyectoServlet extends HttpServlet {
                     break;
                 case "5":
                     String cod = request.getParameter("id");
-                    System.out.println("CODIGO " + cod);
                     boolean r = proyectoServiceImpl.Eliminar(cod);
                     if (r) {
                         List<Proyecto> lpro = proyectoServiceImpl.list();
@@ -158,7 +157,6 @@ public class ProyectoServlet extends HttpServlet {
             request.getRequestDispatcher("/Trabajador/NuevoProyecto.jsp").forward(request, response);
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

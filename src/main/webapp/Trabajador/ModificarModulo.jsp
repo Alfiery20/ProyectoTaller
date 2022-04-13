@@ -4,6 +4,7 @@
     Author     : Alfiery Furlong
 --%>
 
+<%@page import="BEANS.Requerimiento"%>
 <%@page import="java.util.Objects"%>
 <%@page import="BEANS.Modulo"%>
 <%@page import="BEANS.Cliente"%>
@@ -20,6 +21,7 @@
     <body class="position-relative">
         <%
             Modulo modulo = (Modulo) request.getSession().getAttribute("modte");
+            List<Requerimiento> listReq = (List<Requerimiento>) request.getSession().getAttribute("listReq");
         %>
         <%@include file="../Partes/Menu.jspf" %>
         <div id="proyectoN" class="col-md-8 order-md-1 w-50">
@@ -45,7 +47,7 @@
                 <div class="row">
                     <div class="col-md-5 mb-3">
                         <label for="country">Tipo</label>
-                        <select class="custom-select d-block w-100 dropdown-menu" id="country" required="" name="tip">
+                        <select class="form-control custom-select d-block w-100 dropdown-menu" id="country" required="" name="tip">
                             <option value="C" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "C") ? "SELECTED" : ""%>>Capacitacion</option>
                             <option value="B" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "B") ? "SELECTED" : ""%>>CORRECION DE BUG</option>
                             <option value="R" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "R") ? "SELECTED" : ""%>>REVISION</option>
@@ -55,12 +57,51 @@
                         </select>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="mb-4">
+                        <h2 class="mt-5 text-center">Requerimientos</h2>
+                        <table class="table" border="1">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    for (Requerimiento requerimiento : listReq) {
+                                %>
+                                <tr>
+                                    <td><%=requerimiento.getNombre()%></td>
+                                    <td><%=requerimiento.getEstado()%></td>
+                                    <td><%=requerimiento.getDescripcion()%></td>
+                                    <td>
+                                        <a href="RequerimientoServlet?Dato=4&id=<%=requerimiento.getId()%>" class="btn btn-lg btn-primary">Editar</a>
+                                        <a href="RequerimientoServlet?Dato=5&id=<%=requerimiento.getId()%>" class="btn btn-lg btn-danger">Eliminar</a>
+                                    </td>
+                                </tr>
+                                <%
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
                 <hr class="mb-4">
                 <div class="d-flex">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <button class="btn btn-primary btn-lg btn-block" type="submit">Modificar</button>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
+                        <a href="ModuloServlet?Dato=1&id=<%=modulo.getId()%>" class="btn btn-primary btn-lg btn-block">Añadir Requerimiento</a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="ProyectoServlet?Dato=5&id=<%=modulo.getId()%>" class="btn btn-danger btn-lg btn-block">Eliminar</a>
+                    </div>
+                    <div class="col-md-5">
                         <a href="ProyectoServlet?Dato=2" class="btn btn-danger btn-lg btn-block">Regresar</a>
                     </div>
                 </div>
