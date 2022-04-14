@@ -16,6 +16,10 @@
         <servlet-name>ModuloServlet</servlet-name>
         <servlet-class>CONTROLLER.ModuloServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RequerimientosServlet</servlet-name>
+        <servlet-class>CONTROLLER.RequerimientosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ClienteServlet</servlet-name>
         <url-pattern>/ClienteServlet</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>ModuloServlet</servlet-name>
         <url-pattern>/ModuloServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequerimientosServlet</servlet-name>
+        <url-pattern>/RequerimientosServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -92,14 +92,11 @@
                 </div>
                 <hr class="mb-4">
                 <div class="d-flex">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <button class="btn btn-primary btn-lg btn-block" type="submit">Modificar</button>
                     </div>
                     <div class="col-md-5">
-                        <a href="ModuloServlet?Dato=1&id=<%=modulo.getId()%>" class="btn btn-primary btn-lg btn-block">Añadir Requerimiento</a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="ProyectoServlet?Dato=5&id=<%=modulo.getId()%>" class="btn btn-danger btn-lg btn-block">Eliminar</a>
+                        <a href="RequerimientosServlet?Dato=1&id=<%=modulo.getId()%>" class="btn btn-primary btn-lg btn-block">Añadir Requerimiento</a>
                     </div>
                     <div class="col-md-5">
                         <a href="ProyectoServlet?Dato=2" class="btn btn-danger btn-lg btn-block">Regresar</a>

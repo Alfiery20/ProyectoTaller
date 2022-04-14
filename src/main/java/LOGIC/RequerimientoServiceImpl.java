@@ -16,4 +16,9 @@ public class RequerimientoServiceImpl {
     public Requerimiento view(Integer id) {
         return requerimientoDAO.view(id);
     }
+
+    public boolean Nuevo(Requerimiento requerimiento) {
+        return requerimientoDAO.guardar(requerimiento);
+    }
+
 }

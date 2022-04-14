@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Requerimiento {
 
-    private Integer id;
+    private String id;
     private String nombre;
     private String estado;
     private String descripcion;
