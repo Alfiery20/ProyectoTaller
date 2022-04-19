@@ -78,8 +78,8 @@
                                     <td><%=requerimiento.getEstado()%></td>
                                     <td><%=requerimiento.getDescripcion()%></td>
                                     <td>
-                                        <a href="RequerimientoServlet?Dato=4&id=<%=requerimiento.getId()%>" class="btn btn-lg btn-primary">Editar</a>
-                                        <a href="RequerimientoServlet?Dato=5&id=<%=requerimiento.getId()%>" class="btn btn-lg btn-danger">Eliminar</a>
+                                        <a href="RequerimientosServlet?Dato=3&id=<%=requerimiento.getId()%>" class="btn btn-lg btn-primary">Editar</a>
+                                        <a href="RequerimientosServlet?Dato=4&id=<%=requerimiento.getId()%>" class="btn btn-lg btn-danger">Eliminar</a>
                                     </td>
                                 </tr>
                                 <%

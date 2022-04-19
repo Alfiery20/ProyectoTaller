@@ -50,6 +50,14 @@ public class RequerimientosServlet extends HttpServlet {
                 case "2":
                     NuevoRequerimiento(request, response);
                     break;
+                case "3":
+                    Requerimiento req = requerimientoServiceImpl.view(request.getParameter("id"));
+                    request.getSession().setAttribute("reqtemp", req);
+                    request.getRequestDispatcher("/Trabajador/ModificarRequerimiento.jsp").forward(request, response);
+                    break;
+                case "4":
+                    ModificarRequerimiento(request, response);
+                    break;
             }
         }
     }
@@ -70,6 +78,27 @@ public class RequerimientosServlet extends HttpServlet {
                 .build();
         requerimientoServiceImpl.Nuevo(requerimiento);
         List<Requerimiento> listReq = requerimientoServiceImpl.list(tempo.getId());
+        request.getSession().setAttribute("listReq", listReq);
+        request.getRequestDispatcher("/Trabajador/ModificarModulo.jsp").forward(request, response);
+    }
+
+    private void ModificarRequerimiento(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String cod = request.getParameter("cod");
+        String nom = request.getParameter("nom");
+        String est = request.getParameter("tip");
+        String des = request.getParameter("des");
+        Modulo tempo = (Modulo) request.getSession().getAttribute("modte");
+        Requerimiento requerimiento = Requerimiento.builder()
+                .id(cod)
+                .nombre(nom)
+                .estado(est)
+                .descripcion(des)
+                .moduloID(tempo.getId())
+                .build();
+        requerimientoServiceImpl.Editar(requerimiento);
+        List<Requerimiento> listReq = requerimientoServiceImpl.list(tempo.getId());
+        request.getSession().setAttribute("modte", tempo);
         request.getSession().setAttribute("listReq", listReq);
         request.getRequestDispatcher("/Trabajador/ModificarModulo.jsp").forward(request, response);
     }

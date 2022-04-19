@@ -1,11 +1,8 @@
 package DAO;
 
-import BEANS.Modulo;
-import BEANS.Proyecto;
 import BEANS.Requerimiento;
 import CONEXION.Conexion;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
@@ -34,13 +31,13 @@ public class RequerimientoDAOImpl {
         return R;
     }
 
-    public Requerimiento view(Integer id) {
+    public Requerimiento view(String id) {
         Requerimiento R = null;
         try {
             Connection Cc = Conexion.conectar();
-            String Sql = String.format("SELECT * FROM public.tb_requerimiento where tb_modulo_id = ?");
+            String Sql = String.format("SELECT * FROM public.tb_requerimiento where tb_requer_id = ?");
             PreparedStatement Pst = Cc.prepareCall(Sql);
-            Pst.setInt(1, id);
+            Pst.setString(1, id);
             ResultSet Rs = Pst.executeQuery();
             while (Rs.next()) {
                 R = mapperRequerimiento(Rs);
@@ -71,7 +68,31 @@ public class RequerimientoDAOImpl {
                 R = true;
             }
             Cc.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return R;
+    }
+
+    public boolean Editar(Requerimiento requerimiento) {
+        boolean R = false;
+        try {
+            Connection Cc = Conexion.conectar();
+            String Sql = String.format("UPDATE public.tb_requerimiento"
+                    + "	SET tb_requer_nombre=?, tb_requer_estado=?, tb_modulo_id=?, tb_reque_desc=?"
+                    + "	WHERE tb_requer_id=?");
+            PreparedStatement Pst = Cc.prepareCall(Sql);
+            Pst.setString(1, requerimiento.getNombre());
+            Pst.setString(2, requerimiento.getEstado());
+            Pst.setInt(3, requerimiento.getModuloID());
+            Pst.setString(4, requerimiento.getDescripcion());
+            Pst.setString(5, requerimiento.getId());
+            int n = Pst.executeUpdate();
+            if (n > 0) {
+                R = true;
+            }
+            Cc.close();
+        } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
         return R;

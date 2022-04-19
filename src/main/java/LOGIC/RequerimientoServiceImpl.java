@@ -13,12 +13,16 @@ public class RequerimientoServiceImpl {
         return requerimientoDAO.list(id);
     }
 
-    public Requerimiento view(Integer id) {
+    public Requerimiento view(String id) {
         return requerimientoDAO.view(id);
     }
 
     public boolean Nuevo(Requerimiento requerimiento) {
         return requerimientoDAO.guardar(requerimiento);
+    }
+
+    public boolean Editar(Requerimiento requerimiento) {
+        return requerimientoDAO.Editar(requerimiento);
     }
 
 }
