@@ -24,23 +24,23 @@
                 <div class="mb-3">
                     <label>Nombre del Modulo</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="username" name="nom">
+                        <input type="text" class="form-control" id="username" name="nom" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Codigo</label>
-                        <input type="text" class="form-control" id="firstName" name="cod">
+                        <input type="text" class="form-control" id="firstName" name="cod" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Duracion</label>
-                        <input type="text" class="form-control" id="lastName" name="dur">
+                        <input type="text" class="form-control" id="lastName" name="dur" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5 mb-3">
                         <label for="country">Tipo</label>
-                        <select class="custom-select d-block w-100 dropdown-menu" id="country" required="" name="tip">
+                        <select class="custom-select d-block w-100 dropdown-menu" id="country" required="" name="tip" required>
                             <option value="C" class="dropdown-item">Capacitacion</option>
                             <option value="B" class="dropdown-item">CORRECION DE BUG</option>
                             <option value="R" class="dropdown-item">REVISION</option>

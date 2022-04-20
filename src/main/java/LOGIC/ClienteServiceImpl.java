@@ -13,7 +13,7 @@ public class ClienteServiceImpl {
         return clienteDAO.list();
     }
 
-    public Cliente view(Integer id) {
+    public Cliente view(String id) {
         return clienteDAO.view(id);
     }
 }

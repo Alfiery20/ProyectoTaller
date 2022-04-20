@@ -31,8 +31,23 @@ public class ClienteDAOImpl {
         return R;
     }
 
-    public Cliente view(Integer id) {
-        return null;
+    public Cliente view(String id) {
+        Cliente R = null;
+        try {
+            Connection Cc = Conexion.conectar();
+            String Sql = String.format("SELECT * FROM public.tb_cliente where tb_cliente_dni = ?");
+            PreparedStatement Pst = Cc.prepareCall(Sql);
+            Pst.setString(1, id);
+            ResultSet Rs = Pst.executeQuery();
+            while (Rs.next()) {
+                R = mapperCliente(Rs);
+            }
+            Rs.close();
+            Cc.close();
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return R;
     }
 
     private Cliente mapperCliente(ResultSet rs) throws SQLException {

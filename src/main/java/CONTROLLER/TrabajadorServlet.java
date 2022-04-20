@@ -59,9 +59,7 @@ public class TrabajadorServlet extends HttpServlet {
         Trabajador temp = trabajadorService.InicioSesion(corr, cont);
         List<Proyecto> lpro = proyectoServiceImpl.list();
         if (temp == null) {
-            System.out.println("DENTRO DEL NULL");
             request.getSession().setAttribute("msj", "INICIO SESION FALLADO");
-            System.out.println("DESPUES DE GUARDAR MENSAJE");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
             request.getSession().setAttribute("usu", temp);

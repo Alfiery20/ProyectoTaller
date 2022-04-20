@@ -18,11 +18,7 @@
     <%
         String msj = (String) request.getSession().getAttribute("msj");
         if (!Objects.isNull(request.getSession().getAttribute("msj"))) {
-    %>
-    <script>
-        alert(<%=msj%>);
-    </script>
-    <%
+            out.println("<script>alert('" + msj + "');</script>");
         }
     %>
     <body class="text-center">

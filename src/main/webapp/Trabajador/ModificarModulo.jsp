@@ -25,29 +25,29 @@
         %>
         <%@include file="../Partes/Menu.jspf" %>
         <div id="proyectoN" class="col-md-8 order-md-1 w-50">
-            <h1 class="mb-3 text-center">Modificar de Modulo</h1>
+            <h1 class="mb-3 text-center"><%=usu.getTipo() == "A" ? "Modificar" : ""%> Modulo</h1>
             <hr class="mb-4">
             <form class="needs-validation" novalidate="" method="post" action="ModuloServlet?Dato=6">
                 <div class="mb-3">
                     <label>Nombre del Modulo</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="username" name="nom" value="<%=modulo.getNombre()%>">
+                        <input type="text" class="form-control" id="username" name="nom" value="<%=modulo.getNombre()%>" <%=usu.getTipo() == "A" ? "required" : "readonly"%> >
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Codigo</label>
-                        <input type="text" class="form-control" id="firstName" name="cod" value="<%=modulo.getId()%>">
+                        <input type="text" class="form-control" id="firstName" name="cod" value="<%=modulo.getId()%>" <%=usu.getTipo() == "A" ? "required" : "readonly"%> >
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Duracion</label>
-                        <input type="text" class="form-control" id="lastName" name="dur" value="<%=modulo.getDuracion()%>">
+                        <input type="text" class="form-control" id="lastName" name="dur" value="<%=modulo.getDuracion()%>" <%=usu.getTipo() == "A" ? "required" : "readonly"%> >
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5 mb-3">
                         <label for="country">Tipo</label>
-                        <select class="form-control custom-select d-block w-100 dropdown-menu" id="country" required="" name="tip">
+                        <select class="form-control custom-select d-block w-100 dropdown-menu" id="country" required="" name="tip" <%=usu.getTipo() == "A" ? "required" : "disabled"%>>
                             <option value="C" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "C") ? "SELECTED" : ""%>>Capacitacion</option>
                             <option value="B" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "B") ? "SELECTED" : ""%>>CORRECION DE BUG</option>
                             <option value="R" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "R") ? "SELECTED" : ""%>>REVISION</option>
@@ -78,8 +78,14 @@
                                     <td><%=requerimiento.getEstado()%></td>
                                     <td><%=requerimiento.getDescripcion()%></td>
                                     <td>
-                                        <a href="RequerimientosServlet?Dato=3&id=<%=requerimiento.getId()%>" class="btn btn-lg btn-primary">Editar</a>
+                                        <a href="RequerimientosServlet?Dato=3&id=<%=requerimiento.getId()%>" class="btn btn-lg btn-primary"><%=usu.getTipo() == "Editar" ? "" : "Observar"%></a>
+                                        <%
+                                            if (usu.getTipo() == "A") {
+                                        %>
                                         <a href="RequerimientosServlet?Dato=4&id=<%=requerimiento.getId()%>" class="btn btn-lg btn-danger">Eliminar</a>
+                                        <%
+                                            }
+                                        %>
                                     </td>
                                 </tr>
                                 <%
@@ -92,12 +98,18 @@
                 </div>
                 <hr class="mb-4">
                 <div class="d-flex">
+                    <%
+                        if (usu.getTipo() == "A") {
+                    %>
                     <div class="col-md-4">
                         <button class="btn btn-primary btn-lg btn-block" type="submit">Modificar</button>
                     </div>
                     <div class="col-md-5">
                         <a href="RequerimientosServlet?Dato=1&id=<%=modulo.getId()%>" class="btn btn-primary btn-lg btn-block">Añadir Requerimiento</a>
                     </div>
+                    <%
+                        }
+                    %>
                     <div class="col-md-5">
                         <a href="ProyectoServlet?Dato=2" class="btn btn-danger btn-lg btn-block">Regresar</a>
                     </div>

@@ -27,40 +27,37 @@
                 <div class="mb-3">
                     <label>Nombre del Proyecto</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="username" name="nom">
-                        <div class="invalid-feedback" style="width: 100%;">
-                            Your username is required.
-                        </div>
+                        <input type="text" class="form-control" id="username" name="nom" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Codigo</label>
-                        <input type="text" class="form-control" id="firstName" name="cod">
+                        <input type="text" class="form-control" id="firstName" name="cod" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Duracion</label>
-                        <input type="text" class="form-control" id="lastName" name="dur">
+                        <input type="text" class="form-control" id="lastName" name="dur" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Presupuesto</label>
-                        <input type="number" class="form-control" id="firstName" name="pre">
+                        <input type="number" class="form-control" id="firstName" name="pre" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Estado</label>
                         <div class="d-flex">
                             <div class="custom-control custom-radio m-2">
-                                <input id="credit" name="est" value="P" type="radio" class="custom-control-input" checked="" required="">
+                                <input id="credit" name="est" value="P" type="radio" class="custom-control-input" checked="" required>
                                 <label class="custom-control-label" for="credit">Pendiente</label>
                             </div>
                             <div class="custom-control custom-radio m-2">
-                                <input id="debit" name="est" value="E" type="radio" class="custom-control-input" required="">
+                                <input id="debit" name="est" value="E" type="radio" class="custom-control-input" required>
                                 <label class="custom-control-label" for="debit">En Progreso</label>
                             </div>
                             <div class="custom-control custom-radio m-2">
-                                <input id="paypal" name="est" value="T" type="radio" class="custom-control-input" required="">
+                                <input id="paypal" name="est" value="T" type="radio" class="custom-control-input" required>
                                 <label class="custom-control-label" for="paypal">Terminado</label>
                             </div>
                         </div>
@@ -69,11 +66,11 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Fecha Inicio</label>
-                        <input type="date" class="form-control" id="firstName" name="fin">
+                        <input type="date" class="form-control" id="firstName" name="fin" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Fecha Termino</label>
-                        <input type="date" class="form-control" id="lastName" name="fet">
+                        <input type="date" class="form-control" id="lastName" name="fet" required>
                     </div>
                 </div>
                 <div class="row">
@@ -81,18 +78,18 @@
                         <label>Tipo</label>
                         <div class="d-flex">
                             <div class="custom-control custom-radio m-2">
-                                <input id="credit" name="tip" value="D" type="radio" class="custom-control-input" checked="" required="">
+                                <input id="credit" name="tip" value="D" type="radio" class="custom-control-input" checked="" required>
                                 <label class="custom-control-label" for="credit">Desarollo</label>
                             </div>
                             <div class="custom-control custom-radio m-2">
-                                <input id="debit" name="tip" value="S" type="radio" class="custom-control-input" required="">
+                                <input id="debit" name="tip" value="S" type="radio" class="custom-control-input" required>
                                 <label class="custom-control-label" for="debit">Soporte</label>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5 mb-3">
                         <label for="country">Cliente</label>
-                        <select class="custom-select d-block w-100" id="country" required="" name="cli">
+                        <select class="custom-select d-block w-100" id="country" required="" name="cli" required>
                             <option value="">[SELECCIONE]</option>
                             <%                                for (Cliente cliente : list) {
                             %>
