@@ -18,6 +18,7 @@
     <body class="position-relative">
         <%
             List<Cliente> list = (List<Cliente>) request.getSession().getAttribute("lisusu");
+            List<Trabajador> listTrab = (List<Trabajador>) request.getSession().getAttribute("listTrab");
         %>
         <%@include file="../Partes/Menu.jspf" %>
         <div id="proyectoN" class="col-md-8 order-md-1 w-50">
@@ -89,11 +90,11 @@
                     </div>
                     <div class="col-md-5 mb-3">
                         <label for="country">Cliente</label>
-                        <select class="custom-select d-block w-100" id="country" required="" name="cli" required>
-                            <option value="">[SELECCIONE]</option>
+                        <select class="custom-select d-block w-50 dropdown-menu" id="country" required="" name="cli" required>
+                            <option class="dropdown-item" value="">[SELECCIONE]</option>
                             <%                                for (Cliente cliente : list) {
                             %>
-                            <option value="<%=cliente.getDNI()%>"><%=cliente.getNombre() + " " + cliente.getApellidos()%></option>
+                            <option class="dropdown-item" value="<%=cliente.getDNI()%>"><%=cliente.getNombre() + " " + cliente.getApellidos()%></option>
                             <%
                                 }
                             %>
@@ -101,6 +102,19 @@
                         <div class="invalid-feedback">
                             Please select a valid country.
                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <label>Trabajador designado: </label>
+                        <select class="custom-select d-block w-100 dropdown-menu" id="country" required="" name="tra" required>
+                            <option class="dropdown-item" value="">[SELECCIONE]</option>
+                            <%
+                                for (Trabajador trabajador : listTrab) {
+                            %>
+                            <option class="dropdown-item" value="<%=trabajador.getId()%>"><%=trabajador.getNombre() + " " + trabajador.getApellidos()%></option>
+                            <%
+                                }
+                            %>
+                        </select>
                     </div>
                 </div>
                 <hr class="mb-4">

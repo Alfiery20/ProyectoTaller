@@ -8,9 +8,13 @@ package CONTROLLER;
 import BEANS.Cliente;
 import BEANS.Modulo;
 import BEANS.Proyecto;
+import BEANS.Trabajador;
+import BEANS.TrabajadorxProyecto;
 import LOGIC.ClienteServiceImpl;
 import LOGIC.ModuloServiceImpl;
 import LOGIC.ProyectoServiceImpl;
+import LOGIC.TrabajadorServiceImpl;
+import LOGIC.TrabajadorXProyectoServiceImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -27,9 +31,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ProyectoServlet extends HttpServlet {
 
+    TrabajadorServiceImpl trabajadorServiceImpl = new TrabajadorServiceImpl();
     ClienteServiceImpl clienteServiceImpl = new ClienteServiceImpl();
     ProyectoServiceImpl proyectoServiceImpl = new ProyectoServiceImpl();
     ModuloServiceImpl moduloServiceImpl = new ModuloServiceImpl();
+    TrabajadorXProyectoServiceImpl proyectoServiceImpl1 = new TrabajadorXProyectoServiceImpl();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -58,8 +64,14 @@ public class ProyectoServlet extends HttpServlet {
                     request.getSession().setAttribute("prote", prueba);
                     List<Cliente> list = clienteServiceImpl.list();
                     List<Modulo> listModu = moduloServiceImpl.list(prueba.getId());
+                    List<Trabajador> listTrab = trabajadorServiceImpl.list();
+                    System.out.println("ID DEL PROYECTO: " + prueba.getId());
+                    TrabajadorxProyecto TXP = proyectoServiceImpl1.view(prueba.getId());
+                    System.out.println("TXP: " + TXP);
+                    request.getSession().setAttribute("TXP", TXP);
                     request.getSession().setAttribute("lisusu", list);
                     request.getSession().setAttribute("listmodu", listModu);
+                    request.getSession().setAttribute("listTrab", listTrab);
                     request.getRequestDispatcher("/Trabajador/ModificarProyecto.jsp").forward(request, response);
                     break;
                 case "4":
@@ -92,9 +104,10 @@ public class ProyectoServlet extends HttpServlet {
         String fet = request.getParameter("fet");
         String tip = request.getParameter("tip");
         String cli = request.getParameter("cli");
-        Proyecto pro;
+        String tra = request.getParameter("tra");
+
         try {
-            pro = Proyecto.builder()
+            Proyecto pro = Proyecto.builder()
                     .nombre(nom)
                     .id(cod)
                     .duracion(dur)
@@ -106,7 +119,15 @@ public class ProyectoServlet extends HttpServlet {
                     .clienteDNI(cli)
                     .build();
             boolean r = proyectoServiceImpl.Guardar(pro);
-            if (r) {
+
+            TrabajadorxProyecto tp = TrabajadorxProyecto.builder()
+                    .proyectoId(cod)
+                    .trabajadorId(tra)
+                    .build();
+            System.out.println("CODIGO PROYECTO: " + cod);
+            System.out.println("CODIGO TRABAJADOR: " + tra);
+            boolean a = proyectoServiceImpl1.Guardar(tp);
+            if (r && a) {
                 List<Proyecto> lpro = proyectoServiceImpl.list();
                 request.getSession().setAttribute("proyectos", lpro);
                 request.getRequestDispatcher("/Trabajador/Proyectos.jsp").forward(request, response);
@@ -157,6 +178,7 @@ public class ProyectoServlet extends HttpServlet {
             request.getRequestDispatcher("/Trabajador/NuevoProyecto.jsp").forward(request, response);
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

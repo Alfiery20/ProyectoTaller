@@ -44,6 +44,10 @@ public class TrabajadorServlet extends HttpServlet {
             switch (dato) {
                 case "1":
                     InicioSesion(request, response);
+                    break;
+                case "2":
+                    NuevoTrabajador(request, response);
+                    break;
             }
         } catch (IOException ex) {
             System.out.println("ERROR 1:" + ex.getMessage());
@@ -67,6 +71,30 @@ public class TrabajadorServlet extends HttpServlet {
             request.getSession().setAttribute("msj", "INICIO SESION EXITOSO");
             request.getRequestDispatcher("/Trabajador/Proyectos.jsp").forward(request, response);
         }
+    }
+
+    private void NuevoTrabajador(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String cod = request.getParameter("cod");
+        String nom = request.getParameter("nom");
+        String ape = request.getParameter("ape");
+        String est = request.getParameter("est");
+        String dni = request.getParameter("dni");
+        String cor = request.getParameter("cor");
+        String tel = request.getParameter("tel");
+        String tip = request.getParameter("tip");
+        Trabajador temp = Trabajador.builder()
+                .id(cod)
+                .DNI(dni)
+                .nombre(nom)
+                .apellidos(ape)
+                .telefono(tel)
+                .correo(cor)
+                .tipo(tip)
+                .situacion(est)
+                .build();
+        trabajadorService.Nuevo(temp);
+        request.getRequestDispatcher("/Trabajador/Proyectos.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

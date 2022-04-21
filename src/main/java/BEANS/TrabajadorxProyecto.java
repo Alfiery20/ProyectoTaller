@@ -6,7 +6,7 @@ import lombok.Data;
 @Builder
 @Data
 public class TrabajadorxProyecto {
-    private Integer proyectoId;
-    private Integer trabajadorId;
+    private String proyectoId;
+    private String trabajadorId;
 }
 

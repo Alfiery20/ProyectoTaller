@@ -73,7 +73,7 @@ public class ProyectoDAOImpl {
                 R = true;
             }
             Cc.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
         return R;

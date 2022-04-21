@@ -16,4 +16,8 @@ public class ClienteServiceImpl {
     public Cliente view(String id) {
         return clienteDAO.view(id);
     }
+
+    public boolean Nuevo(Cliente cliente) {
+        return clienteDAO.Nuevo(cliente);
+    }
 }

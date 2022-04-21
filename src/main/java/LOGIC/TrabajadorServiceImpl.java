@@ -20,4 +20,8 @@ public class TrabajadorServiceImpl {
     public Trabajador InicioSesion(String corr, String cont) {
         return trabajadorDAOImpl.inicioSesion(corr, cont);
     }
+
+    public boolean Nuevo(Trabajador trabajador) {
+        return trabajadorDAOImpl.Nuevo(trabajador);
+    }
 }

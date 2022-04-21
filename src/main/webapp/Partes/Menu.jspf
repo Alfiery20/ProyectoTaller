@@ -9,13 +9,13 @@
     <div class="collapse navbar-collapse d-flex justify-content-between align-items-center" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Proyectos</a>
+                <a class="nav-link" href="ProyectoServlet?Dato=2">Proyectos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Modulo</a>
+                <a class="nav-link" href="ClienteServlet?Dato=2">Clientes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Requerimiento</a>
+                <a class="nav-link" href="ClienteServlet?Dato=4">Programadores</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link">Reporte</a>

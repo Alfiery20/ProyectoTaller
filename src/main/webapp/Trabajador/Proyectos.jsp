@@ -55,7 +55,7 @@
                             %></p>
                         <p class="card-text"><%="Presupuesto " + proyecto.getPresupuesto()%></p>
                         <p class="card-text"><%="Fecha Inicio " + proyecto.getFechaIni()%></p>
-                        <p class="card-text"><%out.print("Cliente: "+csi.view(proyecto.getClienteDNI()).getNombre() + " " + csi.view(proyecto.getClienteDNI()).getApellidos());%></p>
+                        <p class="card-text"><%out.print("Cliente: " + csi.view(proyecto.getClienteDNI()).getNombre() + " " + csi.view(proyecto.getClienteDNI()).getApellidos());%></p>
                         <a href="ProyectoServlet?Dato=3&id=<%=proyecto.getId()%>"><input 
                                 class="card-link btn btn-lg btn-primary" type="button" value="<%=usu.getTipo() == "A" ? "Editar" : "Observar"%>"></a>
                     </div>

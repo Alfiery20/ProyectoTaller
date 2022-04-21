@@ -4,6 +4,7 @@
     Author     : Alfiery Furlong
 --%>
 
+<%@page import="BEANS.TrabajadorxProyecto"%>
 <%@page import="BEANS.Modulo"%>
 <%@page import="java.util.Objects"%>
 <%@page import="BEANS.Proyecto"%>
@@ -23,6 +24,8 @@
             Proyecto prote = (Proyecto) request.getSession().getAttribute("prote");
             List<Cliente> list = (List<Cliente>) request.getSession().getAttribute("lisusu");
             List<Modulo> listModu = (List<Modulo>) request.getSession().getAttribute("listmodu");
+            List<Trabajador> listTrab = (List<Trabajador>) request.getSession().getAttribute("listTrab");
+            TrabajadorxProyecto TXP = (TrabajadorxProyecto) request.getSession().getAttribute("TXP");
         %>
         <%@include file="../Partes/Menu.jspf" %>
         <div id="proyectoN" class="col-md-8 order-md-1 w-50">
@@ -102,6 +105,19 @@
                             <option value="<%=cliente.getDNI()%>" <%=Objects.equals(prote.getClienteDNI(), cliente.getDNI()) ? "selected" : ""%>>
                                 <%=cliente.getNombre() + " " + cliente.getApellidos()%>
                             </option>
+                            <%
+                                }
+                            %>
+                        </select>
+                    </div>
+                    <div class="mb-5">
+                        <label>Trabajador designado: </label>
+                        <select class="custom-select d-block w-100 dropdown-menu" id="country" required="" name="tra" required>
+                            <option class="dropdown-item" value="">[SELECCIONE]</option>
+                            <%
+                                for (Trabajador trabajador : listTrab) {
+                            %>
+                            <option class="dropdown-item" value="<%=trabajador.getId()%>" <%=Objects.equals(TXP.getTrabajadorId(), trabajador.getId()) ? "selected" : ""%>><%=trabajador.getNombre() + " " + trabajador.getApellidos()%></option>
                             <%
                                 }
                             %>
