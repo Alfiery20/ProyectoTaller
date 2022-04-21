@@ -4,6 +4,9 @@
     Author     : Alfiery Furlong
 --%>
 
+<%@page import="LOGIC.ProyectoServiceImpl"%>
+<%@page import="java.util.Objects"%>
+<%@page import="BEANS.Proyecto"%>
 <%@page import="BEANS.Cliente"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,6 +18,10 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>Nuevo Modulo</title>
     </head>
+    <%
+        ProyectoServiceImpl impl = new ProyectoServiceImpl();
+        Proyecto tempo = impl.view((String) request.getSession().getAttribute("proyectoTempo"));
+    %>
     <body class="position-relative">
         <%@include file="../Partes/Menu.jspf" %>
         <div id="proyectoN" class="col-md-8 order-md-1 w-50">
@@ -41,12 +48,20 @@
                     <div class="col-md-5 mb-3">
                         <label for="country">Tipo</label>
                         <select class="custom-select d-block w-100 dropdown-menu" id="country" required="" name="tip" required>
-                            <option value="C" class="dropdown-item">Capacitacion</option>
+                            <%                                if (Objects.equals(tempo.getTipo(), "S")) {
+                            %>
+                            <option value="C" class="dropdown-item">CAPACITACION</option>
                             <option value="B" class="dropdown-item">CORRECION DE BUG</option>
                             <option value="R" class="dropdown-item">REVISION</option>
+                            <option value="O" class="dropdown-item">OTROS</option>
+                            <%
+                            } else {
+                            %>
                             <option value="P" class="dropdown-item">NUEVO PROYECTO</option>
                             <option value="M" class="dropdown-item">MANTENIMIENTO</option>
-                            <option value="O" class="dropdown-item">OTROS</option>
+                            <%
+                                }
+                            %>
                         </select>
                     </div>
                 </div>

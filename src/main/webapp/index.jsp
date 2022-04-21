@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="style.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <title>Bienvenidos a Rodasoft</title>
+        <title>Bienvenidos a Garzasoft</title>
     </head>
     <%
         String msj = (String) request.getSession().getAttribute("msj");

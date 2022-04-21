@@ -18,7 +18,7 @@
                 <a class="nav-link" href="ClienteServlet?Dato=4">Programadores</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="ReportServlet">Reporte</a>
+                <a class="nav-link" href="TrabajadorServlet?Dato=3">Cerrar Sesion</a>
             </li>
         </ul>
         <a href="#" class="btn"><%=usu.getNombre() + " " + usu.getApellidos()%></a>

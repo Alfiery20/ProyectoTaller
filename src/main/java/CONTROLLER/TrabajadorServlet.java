@@ -48,6 +48,10 @@ public class TrabajadorServlet extends HttpServlet {
                 case "2":
                     NuevoTrabajador(request, response);
                     break;
+                case "3":
+                    request.getSession().setAttribute("msj", null);
+                    request.getSession().setAttribute("usu", null);
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         } catch (IOException ex) {
             System.out.println("ERROR 1:" + ex.getMessage());

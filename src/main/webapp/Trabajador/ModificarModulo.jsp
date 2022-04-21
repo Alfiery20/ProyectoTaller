@@ -4,6 +4,7 @@
     Author     : Alfiery Furlong
 --%>
 
+<%@page import="BEANS.Proyecto"%>
 <%@page import="BEANS.Requerimiento"%>
 <%@page import="java.util.Objects"%>
 <%@page import="BEANS.Modulo"%>
@@ -18,8 +19,10 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>Modificar Modulo</title>
     </head>
+
     <body class="position-relative">
         <%
+            Proyecto tempo = (Proyecto) request.getSession().getAttribute("proyectoTempo");
             Modulo modulo = (Modulo) request.getSession().getAttribute("modte");
             List<Requerimiento> listReq = (List<Requerimiento>) request.getSession().getAttribute("listReq");
         %>
@@ -48,12 +51,21 @@
                     <div class="col-md-5 mb-3">
                         <label for="country">Tipo</label>
                         <select class="form-control custom-select d-block w-100 dropdown-menu" id="country" required="" name="tip" <%=Objects.equals(usu.getTipo(), "A") ? "required" : "disabled"%>>
+
+                            <%                                if (Objects.equals(tempo.getTipo(), "S")) {
+                            %>
                             <option value="C" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "C") ? "SELECTED" : ""%>>Capacitacion</option>
                             <option value="B" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "B") ? "SELECTED" : ""%>>CORRECION DE BUG</option>
                             <option value="R" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "R") ? "SELECTED" : ""%>>REVISION</option>
+                            <option value="O" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "O") ? "SELECTED" : ""%>>OTROS</option>
+                            <%
+                            } else {
+                            %>
                             <option value="P" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "P") ? "SELECTED" : ""%>>NUEVO PROYECTO</option>
                             <option value="M" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "M") ? "SELECTED" : ""%>>MANTENIMIENTO</option>
-                            <option value="O" class="dropdown-item" <%=Objects.equals(modulo.getTipo(), "O") ? "SELECTED" : ""%>>OTROS</option>
+                            <%
+                                }
+                            %>
                         </select>
                     </div>
                 </div>
