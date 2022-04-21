@@ -64,6 +64,33 @@ public class TrabajadorDAOImpl {
         return R;
     }
 
+    public boolean Modificar(Trabajador trabajador) {
+        boolean R = false;
+        try {
+            Connection Cc = Conexion.conectar();
+            String Sql = "UPDATE public.tb_trabajador"
+                    + "	SET tb_trabajador_dni=?, tb_trabajador_nomb=?, tb_trabajador_apell=?, tb_trabajador_telef=?, tb_trabajador_corr=?, tb_trabajador_situa=?, tb_trabajador_tipo=?"
+                    + "	WHERE tb_trabajador_id=?;";
+            PreparedStatement Pst = Cc.prepareCall(Sql);
+            Pst.setString(8, trabajador.getId());
+            Pst.setString(1, trabajador.getDNI());
+            Pst.setString(2, trabajador.getNombre());
+            Pst.setString(3, trabajador.getApellidos());
+            Pst.setString(4, trabajador.getTelefono());
+            Pst.setString(5, trabajador.getCorreo());
+            Pst.setString(6, trabajador.getSituacion());
+            Pst.setString(7, trabajador.getTipo());
+            int n = Pst.executeUpdate();
+            if (n > 0) {
+                R = true;
+            }
+            Cc.close();
+        } catch (SQLException e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+        return R;
+    }
+
     public Trabajador inicioSesion(String corr, String cont) {
         Trabajador R = null;
         try {

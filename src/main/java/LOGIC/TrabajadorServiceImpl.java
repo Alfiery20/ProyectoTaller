@@ -24,4 +24,8 @@ public class TrabajadorServiceImpl {
     public boolean Nuevo(Trabajador trabajador) {
         return trabajadorDAOImpl.Nuevo(trabajador);
     }
+    
+    public boolean Modificar(Trabajador trabajador) {
+        return trabajadorDAOImpl.Modificar(trabajador);
+    }
 }

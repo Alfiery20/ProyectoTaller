@@ -52,6 +52,13 @@ public class TrabajadorServlet extends HttpServlet {
                     request.getSession().setAttribute("msj", null);
                     request.getSession().setAttribute("usu", null);
                     request.getRequestDispatcher("index.jsp").forward(request, response);
+                    break;
+                case "4":
+                    request.getRequestDispatcher("Cliente/ModificarProgramador.jsp").forward(request, response);
+                    break;
+                case "5":
+                    ModificarTrabajador(request, response);
+                    break;
             }
         } catch (IOException ex) {
             System.out.println("ERROR 1:" + ex.getMessage());
@@ -99,6 +106,33 @@ public class TrabajadorServlet extends HttpServlet {
                 .situacion(est)
                 .build();
         trabajadorService.Nuevo(temp);
+        request.getRequestDispatcher("/Trabajador/Proyectos.jsp").forward(request, response);
+    }
+
+    private void ModificarTrabajador(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String cod = request.getParameter("cod");
+        String nom = request.getParameter("nom");
+        String ape = request.getParameter("ape");
+        String est = request.getParameter("est");
+        String dni = request.getParameter("dni");
+        String cor = request.getParameter("cor");
+        String tel = request.getParameter("tel");
+        String tip = request.getParameter("tip");
+        System.out.println("ESTADO " + est);
+        System.out.println("TIPO " + tip);
+        Trabajador temp = Trabajador.builder()
+                .id(cod)
+                .DNI(dni)
+                .nombre(nom)
+                .apellidos(ape)
+                .telefono(tel)
+                .correo(cor)
+                .tipo(tip)
+                .situacion(est)
+                .build();
+        trabajadorService.Modificar(temp);
+        //request.getSession().setAttribute("usu", trabajadorService.view(((Trabajador) (request.getSession().getAttribute("usu"))).getId()));
         request.getRequestDispatcher("/Trabajador/Proyectos.jsp").forward(request, response);
     }
 

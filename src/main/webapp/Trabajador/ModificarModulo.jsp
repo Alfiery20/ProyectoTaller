@@ -4,6 +4,7 @@
     Author     : Alfiery Furlong
 --%>
 
+<%@page import="LOGIC.ProyectoServiceImpl"%>
 <%@page import="BEANS.Proyecto"%>
 <%@page import="BEANS.Requerimiento"%>
 <%@page import="java.util.Objects"%>
@@ -22,7 +23,8 @@
 
     <body class="position-relative">
         <%
-            Proyecto tempo = (Proyecto) request.getSession().getAttribute("proyectoTempo");
+            ProyectoServiceImpl impl = new ProyectoServiceImpl();
+            Proyecto tempo = impl.view((String) request.getSession().getAttribute("proyectoTempo"));
             Modulo modulo = (Modulo) request.getSession().getAttribute("modte");
             List<Requerimiento> listReq = (List<Requerimiento>) request.getSession().getAttribute("listReq");
         %>
@@ -50,7 +52,7 @@
                 <div class="row">
                     <div class="col-md-5 mb-3">
                         <label for="country">Tipo</label>
-                        <select class="form-control custom-select d-block w-100 dropdown-menu" id="country" required="" name="tip" <%=Objects.equals(usu.getTipo(), "A") ? "required" : "disabled"%>>
+                        <select class="form-control custom-select d-block w-100 dropdown-menu" id="country" required="" name="tip" <%=Objects.equals(usu.getTipo(), "A") ? "required" : ""%>>
 
                             <%                                if (Objects.equals(tempo.getTipo(), "S")) {
                             %>
