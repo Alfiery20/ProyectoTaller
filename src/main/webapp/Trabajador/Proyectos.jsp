@@ -4,6 +4,7 @@
     Author     : Alfiery Furlong
 --%>
 
+<%@page import="java.util.Objects"%>
 <%@page import="BEANS.Cliente"%>
 <%@page import="LOGIC.ClienteServiceImpl"%>
 <%@page import="java.util.List"%>
@@ -20,7 +21,12 @@
     <body class="bg-light">
         <%@include file="../Partes/Menu.jspf" %>
         <div id="proyectoN" class="bg-light position-relative">
+            <%                if (Objects.equals(usu.getTipo(), "A")) {
+            %>
             <a href="ClienteServlet?Dato=1"><input type="button" class="btn btn-lg btn-primary position-relative m-1 float-end" value="Nuevo"></a>
+                <%
+                    }
+                %>
             <div class="bg-light py-5 row col-md-4 position-relative w-100">
                 <%                    ClienteServiceImpl csi = new ClienteServiceImpl();
                     List<Proyecto> list = (List<Proyecto>) request.getSession().getAttribute("proyectos");
@@ -57,7 +63,7 @@
                         <p class="card-text"><%="Fecha Inicio " + proyecto.getFechaIni()%></p>
                         <p class="card-text"><%out.print("Cliente: " + csi.view(proyecto.getClienteDNI()).getNombre() + " " + csi.view(proyecto.getClienteDNI()).getApellidos());%></p>
                         <a href="ProyectoServlet?Dato=3&id=<%=proyecto.getId()%>"><input 
-                                class="card-link btn btn-lg btn-primary" type="button" value="<%=usu.getTipo() == "A" ? "Editar" : "Observar"%>"></a>
+                                class="card-link btn btn-lg btn-primary" type="button" value="<%=Objects.equals(usu.getTipo(), "A") ? "Editar" : "Observar"%>"></a>
                     </div>
                 </div>
                 <%

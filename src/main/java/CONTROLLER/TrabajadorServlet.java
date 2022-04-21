@@ -61,6 +61,7 @@ public class TrabajadorServlet extends HttpServlet {
         String corr = request.getParameter("corr");
         String cont = request.getParameter("cont");
         Trabajador temp = trabajadorService.InicioSesion(corr, cont);
+        System.out.println("USUARIO AQUIIIIIII--------->>>>>>>>>>>>>>" + temp);
         List<Proyecto> lpro = proyectoServiceImpl.list();
         if (temp == null) {
             request.getSession().setAttribute("msj", "INICIO SESION FALLADO");

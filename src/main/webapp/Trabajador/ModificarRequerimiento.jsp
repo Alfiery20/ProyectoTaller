@@ -24,36 +24,36 @@
     <body class="position-relative">
         <%@include file="../Partes/Menu.jspf" %>
         <div id="proyectoN" class="col-md-8 order-md-1 w-50">
-            <h1 class="mb-3 text-center"><%=usu.getTipo() == "A" ? "Modificar de " : ""%> Requerimiento</h1>
+            <h1 class="mb-3 text-center"><%=Objects.equals(usu.getTipo(), "A") ? "Modificar de " : ""%> Requerimiento</h1>
             <hr class="mb-4">
             <form class="needs-validation" novalidate="" method="post" action="RequerimientosServlet?Dato=4">
                 <div class="mb-3">
                     <label>Nombre del Requerimiento</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="username" name="nom" value="<%=temp.getNombre()%>" <%=usu.getTipo() == "A" ? "required" : "readonly"%>>
+                        <input type="text" class="form-control" id="username" name="nom" value="<%=temp.getNombre()%>" <%=Objects.equals(usu.getTipo(), "A") ? "required" : "readonly"%>>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label>Codigo</label>
-                        <input type="text" class="form-control" id="firstName" name="cod" value="<%=temp.getId()%>" <%=usu.getTipo() == "A" ? "required" : "readonly"%>>
+                        <input type="text" class="form-control" id="firstName" name="cod" value="<%=temp.getId()%>" <%=Objects.equals(usu.getTipo(), "A") ? "required" : "readonly"%>>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Estado</label>
                         <div class="d-flex">
                             <div class="custom-control custom-radio m-1">
                                 <input name="tip" value="P" type="radio" 
-                                       class="custom-control-input" <%=Objects.equals(temp.getEstado(), "P") ? "checked" : ""%> <%=usu.getTipo() == "A" ? "required" : "disabled"%>>
+                                       class="custom-control-input" <%=Objects.equals(temp.getEstado(), "P") ? "checked" : ""%> <%=Objects.equals(usu.getTipo(), "A") ? "required" : "disabled"%>>
                                 <label class="custom-control-label" for="credit">Pendiente</label>
                             </div>
                             <div class="custom-control custom-radio m-1">
                                 <input name="tip" value="E" type="radio" 
-                                       class="custom-control-input" <%=Objects.equals(temp.getEstado(), "E") ? "checked" : ""%> <%=usu.getTipo() == "A" ? "required" : "disabled"%>>
+                                       class="custom-control-input" <%=Objects.equals(temp.getEstado(), "E") ? "checked" : ""%> <%=Objects.equals(usu.getTipo(), "A") ? "required" : "disabled"%>>
                                 <label class="custom-control-label" for="debit">En progreso</label>
                             </div>
                             <div class="custom-control custom-radio m-1">
                                 <input name="tip" value="T" type="radio"
-                                       class="custom-control-input" <%=Objects.equals(temp.getEstado(), "T") ? "checked" : ""%> <%=usu.getTipo() == "A" ? "required" : "disabled"%>>
+                                       class="custom-control-input" <%=Objects.equals(temp.getEstado(), "T") ? "checked" : ""%> <%=Objects.equals(usu.getTipo(), "A") ? "required" : "disabled"%>>
                                 <label class="custom-control-label" for="debit">Terminado</label>
                             </div>
                         </div>
@@ -62,13 +62,13 @@
                 <div class="row">
                     <div class="col-md-5 mb-3">
                         <label for="country">Descripcion</label>
-                        <textarea class="custom-control custom-radio m-1" id="id" name="des" rows="10" cols="90" <%=usu.getTipo() == "A" ? "required" : "readonly"%>><%=temp.getDescripcion()%></textarea>
+                        <textarea class="custom-control custom-radio m-1" id="id" name="des" rows="10" cols="90" <%=Objects.equals(usu.getTipo(), "A") ? "required" : "readonly"%>><%=temp.getDescripcion()%></textarea>
                     </div>
                 </div>
                 <hr class="mb-4">
                 <div class="d-flex">
                     <%
-                        if (usu.getTipo() == "A") {
+                        if (Objects.equals(usu.getTipo(), "A")) {
                     %>
                     <div class="col-md-6">
                         <button class="btn btn-primary btn-lg btn-block" type="submit">Modificar</button>
