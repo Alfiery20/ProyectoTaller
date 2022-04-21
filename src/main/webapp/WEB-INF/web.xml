@@ -20,6 +20,10 @@
         <servlet-name>RequerimientosServlet</servlet-name>
         <servlet-class>CONTROLLER.RequerimientosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReportServlet</servlet-name>
+        <servlet-class>CONTROLLER.ReportServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ClienteServlet</servlet-name>
         <url-pattern>/ClienteServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>RequerimientosServlet</servlet-name>
         <url-pattern>/RequerimientosServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportServlet</servlet-name>
+        <url-pattern>/ReportServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
